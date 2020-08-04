@@ -1,40 +1,34 @@
 package com.twu.refactoring;
 
+import java.util.*;
+
 public class Direction {
     private final char direction;
+
+    private static final Map<Character, List<Direction>> turnMap = new HashMap<Character, List<Direction>>() {{
+        put('N', Arrays.asList(new Direction('W'), new Direction('E')));
+        put('S', Arrays.asList(new Direction('E'), new Direction('W')));
+        put('E', Arrays.asList(new Direction('N'), new Direction('S')));
+        put('W', Arrays.asList(new Direction('S'), new Direction('N')));
+    }};
+
 
     public Direction(char direction) {
         this.direction = direction;
     }
 
     public Direction turnRight() {
-        switch (direction) {
-            case 'N':
-                return new Direction('E');
-            case 'S':
-                return new Direction('W');
-            case 'E':
-                return new Direction('N');
-            case 'W':
-                return new Direction('S');
-            default:
-                throw new IllegalArgumentException();
-        }
+        if (!turnMap.containsKey(direction))
+            throw new IllegalArgumentException();
+
+        return turnMap.get(direction).get(1);
     }
 
     public Direction turnLeft() {
-        switch (direction) {
-            case 'N':
-                return new Direction('W');
-            case 'S':
-                return new Direction('E');
-            case 'E':
-                return new Direction('N');
-            case 'W':
-                return new Direction('S');
-            default:
-                throw new IllegalArgumentException();
-        }
+        if (!turnMap.containsKey(direction))
+            throw new IllegalArgumentException();
+
+        return turnMap.get(direction).get(0);
     }
 
     @Override
