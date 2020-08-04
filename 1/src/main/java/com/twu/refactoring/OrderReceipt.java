@@ -16,7 +16,7 @@ public class OrderReceipt {
 
 	public String printOrderInfo() {
     	StringBuffer stringBuffer = new StringBuffer();
-    	stringBuffer.append(order.getCustomerAddress());
+    	stringBuffer.append(order.getCustomerName());
     	stringBuffer.append(order.getCustomerAddress());
     	return stringBuffer.toString();
 	}
