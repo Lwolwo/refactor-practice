@@ -10,6 +10,10 @@ public class NumberCruncher {
 
     public NumberCruncher(int... numbers) {
         this.numbers = numbers;
+        countNumber();
+    }
+
+    public void countNumber() {
         for (int number : numbers) {
             if (number % 2 == 0) {
                 countEven++;
